@@ -5,6 +5,14 @@
     Purpose: OOP that models a vehicle
 """
 
+
+# Print title banner 
+print("=" * 50)
+print("🚗 The Intelligent Ride".center(50))
+print("A Python OOP Simulation of a Smart Vehicle".center(50))
+print("=" * 50) #+ '\n' )
+print()
+
 # Define a class named vehicle
 class Vehicle:
     # Constructor method to initalize the vehichle's atributes
@@ -34,21 +42,26 @@ class Vehicle:
         else:
             print("Engine is off. Please start the engine first.")
 
-    
 
+    # Method to brake the vehicle
+    def brake(self):
+        self.speed = 0
+        print(f"{self.name} has stopped.")
 
-#3. Define four methods:
-    # - start_engine: sets is_engine_on to True
-    # - stop_engine: sets is_engine_on to False
-    #- accelerate: increases speed by a user-defined value
-    #- brake: sets speed to 0
 
 #4. Collect user input for vehicle name and model year
 vehicle_name = input("Enter the vehicle name: ")
 vehicle_year = int(input("Enter the model year: "))
 
-#5. Create an instance of the Vehicle class using the user inputs.
+# Create an instance of the Vehicle class using the user inputs.
 my_vehicle = Vehicle(vehicle_name, vehicle_year)
-#6. Use the methods and print the updated vehicle state after each action.
-my_vehicle.start_engine()
-my_vehicle.accelerate(30)
+
+#Use the methods and print the updated vehicle state after each action.
+my_vehicle.start_engine()       # Start the engine
+my_vehicle.accelerate(30)       # Accelerate by 30 mph
+my_vehicle.brake()              # Apply brakes
+my_vehicle.stop_engine()        # Stop the engine
+
+
+# Add sound to the engine started
+# Add sound to the accelerate
