@@ -26,6 +26,15 @@ class Vehicle:
         self.speed = 0                              # Reset the speed to 0
         print(f"{self.name}'s engine stopped.")     # Informs the user
 
+    # Method to accelerate the vehicle
+    def accelerate(self, speed_increase):
+        if self.is_engine_on:
+            self.speed += speed_increase
+            print(f"{self.name} accelerated to {self.speed} mph.")  # Show new speed
+        else:
+            print("Engine is off. Please start the engine first.")
+
+    
 
 
 #3. Define four methods:
@@ -42,3 +51,4 @@ vehicle_year = int(input("Enter the model year: "))
 my_vehicle = Vehicle(vehicle_name, vehicle_year)
 #6. Use the methods and print the updated vehicle state after each action.
 my_vehicle.start_engine()
+my_vehicle.accelerate(30)
