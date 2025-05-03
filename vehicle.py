@@ -7,16 +7,21 @@
 
 import pygame
 import time
+from rich.console import Console
+from rich.text import Text
 
 # Initializing the mixer
 pygame.mixer.init()
 
+# Create a rich Console object for output
+console = Console()
+
 # Print title banner 
-print("=" * 50)
-print("🚗 The Intelligent Ride".center(50))
-print("A Python OOP Simulation of a Smart Vehicle".center(50))
-print("=" * 50)
-print()
+console.print("=" * 50, style="bold yellow")
+console.print("🚗 The Intelligent Ride".center(50), style="bold green")
+console.print("A Python OOP Simulation of a Smart Vehicle".center(50), style="italic blue")
+console.print("=" * 50, style="bold yellow")
+console.print()
 
 def play_sound(sounds):
     pygame.mixer.music.stop()               # Stop anything already playing
@@ -36,7 +41,7 @@ class Vehicle:
         
 
     def open_door(self):
-        print("Door opened. Welcome in!")
+        console.print(f"[cyan]Door opened. Welcome in![/cyan]")
         play_sound("sounds/door_open.mp3")
 
     # Method to start the engine
@@ -71,7 +76,7 @@ class Vehicle:
             print(f"{self.name} is already stopped.")
             
         self.speed = 0
-        time.sleep(5)
+        time.sleep(10)
         print(f"{self.name} has stopped.")
 
     
@@ -109,7 +114,7 @@ while my_vehicle.is_engine_on:
     if user_choice =="1":
         print("\nEntering driving mode. . .")
         while True:
-            user_input = (input("Enter speed to accelerate (or press Enter to brake): ")).strip()
+            user_input = (input("hit the accelerator to acelerate more (or press Enter to brake): ")).strip()
 
             if user_input == "":
                 my_vehicle.brake()
