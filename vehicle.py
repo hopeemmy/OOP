@@ -55,15 +55,23 @@ class Vehicle:
     def accelerate(self, speed_increase):
         if self.is_engine_on:
             self.speed += speed_increase
-            print(f"{self.name} accelerated to {self.speed} mph.")  # Show new speed
             play_sound("sounds/accelerate.mp3")
+            print(f"{self.name} accelerated. current speed: {self.speed} mph.")  # Show new speed
+            
         else:
             print("Engine is off. Please start the engine first.")
 
 
     # Method to brake the vehicle
     def brake(self):
+        if self.speed > 0:
+            print(f"{self.name} is braking from {self.speed} mph to a stop. . .")
+            play_sound("sounds/brake.mp3")
+        else:
+            print(f"{self.name} is already stopped.")
+            
         self.speed = 0
+        time.sleep(5)
         print(f"{self.name} has stopped.")
 
     
@@ -99,9 +107,22 @@ while my_vehicle.is_engine_on:
     user_choice = input("Enter selection (1/2/3): ")
 
     if user_choice =="1":
-        increase = int(input("Enter speed to drive (mph): "))
-        my_vehicle.accelerate(increase)
+        print("\nEntering driving mode. . .")
+        while True:
+            user_input = (input("Enter speed to accelerate (or press Enter to brake): ")).strip()
+
+            if user_input == "":
+                my_vehicle.brake()
+                break                       # Exit driving mode and return to main menu
+
+            try:
+                increase = int(user_input)
+                my_vehicle.accelerate(increase)
+
+            except ValueError:
+                print("Please enter a valid number or type 'brake'.")
         
+
     elif user_choice == "2":
         my_vehicle.brake()
 
