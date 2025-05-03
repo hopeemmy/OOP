@@ -18,11 +18,11 @@ print("A Python OOP Simulation of a Smart Vehicle".center(50))
 print("=" * 50)
 print()
 
-def play_sound(car_sounds):
-    pygame.mixer.music.load(car_sounds)
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        time.sleep(0.1)
+def play_sound(sounds):
+    pygame.mixer.music.stop()               # Stop anything already playing
+    pygame.mixer.music.load(sounds)         # Load the new sound
+    pygame.mixer.music.play()               # Play it once
+    time.sleep(0.1)
     
 
 # Define a class named vehicle
@@ -37,13 +37,13 @@ class Vehicle:
 
     def open_door(self):
         print("Door opened. Welcome in!")
-        play_sound("door_open.mp3")
+        play_sound("sounds/door_open.mp3")
 
     # Method to start the engine
     def start_engine(self):
         self.is_engine_on = True                 # Turn the engine on
         print(f"{self.name}'s engine started")    # Inform the user
-        play_sound("engine_start.mp3")
+        play_sound("sounds/engine_start.mp3")
 
     # Method to stop the engine
     def stop_engine(self):                         
@@ -56,7 +56,7 @@ class Vehicle:
         if self.is_engine_on:
             self.speed += speed_increase
             print(f"{self.name} accelerated to {self.speed} mph.")  # Show new speed
-            play_sound("accelerate.mp3")
+            play_sound("sounds/accelerate.mp3")
         else:
             print("Engine is off. Please start the engine first.")
 
@@ -72,7 +72,7 @@ class Vehicle:
         print(" You stepped out of the car")
         time.sleep(1)
         print("Door closed.")
-        play_sound("door_open.mp3")
+        play_sound("sounds/door_open.mp3")
 
 #--------------------- MAAIN PROGRAM --------------------------------#
 # Collect user input for vehicle name and model year
@@ -83,12 +83,12 @@ vehicle_year = int(input("Enter the model year: "))
 my_vehicle = Vehicle(vehicle_name, vehicle_year)
 
 
-
 #Use the methods and print the updated vehicle state after each action
 my_vehicle.open_door()
 time.sleep(1)
 
 my_vehicle.start_engine()       # Start the engine
+time.sleep(1)
 
 # Show menu options after engine starts
 while my_vehicle.is_engine_on:
@@ -113,10 +113,4 @@ while my_vehicle.is_engine_on:
     else:
         print("Invalid inout. Try again.")
 
-        #my_vehicle.accelerate(30)       # Accelerate by 30 mph
-        #my_vehicle.brake()              # Apply brakes
-        #my_vehicle.stop_engine()        # Stop the engine
-
-
-# Add sound to the engine started
-# Add sound to the accelerate
+       
