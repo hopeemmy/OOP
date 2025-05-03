@@ -41,50 +41,50 @@ class Vehicle:
         
 
     def open_door(self):
-        console.print(f"[cyan]Door opened. Welcome in![/cyan]")
+        console.print("[cyan]Door opened. Welcome in![/cyan]")
         play_sound("sounds/door_open.mp3")
 
     # Method to start the engine
     def start_engine(self):
         self.is_engine_on = True                 # Turn the engine on
-        print(f"{self.name}'s engine started")    # Inform the user
+        console.print(f"[bold green]{self.name}'s engine started[/bold green]")    # Inform the user
         play_sound("sounds/engine_start.mp3")
 
     # Method to stop the engine
     def stop_engine(self):                         
         self.is_engine_on = False                   # Turn the engine off
         self.speed = 0                              # Reset the speed to 0
-        print(f"{self.name}'s engine stopped.")     # Informs the user
+        console.print(f"[red]{self.name}'s engine stopped.[/red]")     # Informs the user
 
     # Method to accelerate the vehicle
     def accelerate(self, speed_increase):
         if self.is_engine_on:
             self.speed += speed_increase
             play_sound("sounds/accelerate.mp3")
-            print(f"{self.name} accelerated. current speed: {self.speed} mph.")  # Show new speed
+            console.print(f"[yellow]{self.name} accelerated. current speed: {self.speed} mph.[/yellow]")  # Show new speed
             
         else:
-            print("Engine is off. Please start the engine first.")
+            console.print("[bold red]Engine is off. Please start the engine first.[/bold red]")
 
 
     # Method to brake the vehicle
     def brake(self):
         if self.speed > 0:
-            print(f"{self.name} is braking from {self.speed} mph to a stop. . .")
+            console.print(f"[magenta]{self.name} is braking from {self.speed} mph to a stop. . .[/magenta]")
             play_sound("sounds/brake.mp3")
         else:
-            print(f"{self.name} is already stopped.")
+            print(f"[bold cyan{self.name} is already stopped.[/bold cyan]")
             
         self.speed = 0
         time.sleep(10)
-        print(f"{self.name} has stopped.")
+        console.print(f"[bold green]{self.name} has stopped.[/bold green]")
 
     
     # Exiting the vehicle
     def exit_vehicle(self):
-        print(" You stepped out of the car")
+        console.print(f"[bold blue] You stepped out of the car[/bold blue]")
         time.sleep(1)
-        print("Door closed.")
+        console.print(f"[bold blue]Door closed.[/bold blue]")
         play_sound("sounds/door_open.mp3")
 
 #--------------------- MAAIN PROGRAM --------------------------------#
@@ -105,14 +105,14 @@ time.sleep(1)
 
 # Show menu options after engine starts
 while my_vehicle.is_engine_on:
-    print("\nChoose an action")
-    print("1. Drive")
-    print("2. Brake")
-    print("3. Stop Engine and Exit")
+    console.print("\n[bold]Choose an action[bold]")
+    console.print("1. Drive")
+    console.print("2. Brake")
+    console.print("3. Stop Engine and Exit")
     user_choice = input("Enter selection (1/2/3): ")
 
     if user_choice =="1":
-        print("\nEntering driving mode. . .")
+        console.print("[bold green]\nEntering driving mode. . .[bold green]")
         while True:
             user_input = (input("hit the accelerator to acelerate more (or press Enter to brake): ")).strip()
 
@@ -125,7 +125,7 @@ while my_vehicle.is_engine_on:
                 my_vehicle.accelerate(increase)
 
             except ValueError:
-                print("Please enter a valid number or type 'brake'.")
+                console.print("[bold red]Please enter a valid number or type 'brake'.[/bold red]")
         
 
     elif user_choice == "2":
@@ -137,6 +137,6 @@ while my_vehicle.is_engine_on:
         break
 
     else:
-        print("Invalid inout. Try again.")
+        console.print("[bold red]Invalid inout. Try again.[/bold red]")
 
        
