@@ -1,8 +1,8 @@
 """
-    Name: vehicle.py
+    Name: vehicle_simulation.py
     Author: Hope Ogbonda
     Created: 5/2/25
-    Purpose: OOP that models a vehicle
+    Purpose: Python OOP program to simulate a smart vehicle interaction
 """
 
 import pygame
@@ -114,7 +114,7 @@ while my_vehicle.is_engine_on:
     if user_choice =="1":
         console.print("[bold green]\nEntering driving mode. . .[bold green]")
         while True:
-            user_input = (input("hit the accelerator to acelerate more (or press Enter to brake): ")).strip()
+            user_input = (input("Add speed to accelerate (or press Enter to brake): ")).strip()
 
             if user_input == "":
                 my_vehicle.brake()
